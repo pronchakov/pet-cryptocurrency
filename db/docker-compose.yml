@@ -1,0 +1,16 @@
+version: "2.4"
+
+services:
+  hello_blockchain_db:
+    container_name: hello_blockchain_db
+    image: postgres:14.1-alpine
+    cpus: 2
+    mem_limit: 512M
+    ports:
+      - 5432:5432
+    environment:
+      - TZ=Europe/Moscow
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
